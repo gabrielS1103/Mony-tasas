@@ -1,0 +1,44 @@
+name: Recolectar tasas
+
+on:
+  schedule:
+    # Cada 20 minutos. El cron gratuito de GitHub es "best effort": a veces se
+    # retrasa o se salta una ronda, pero como solo guardamos un registro por
+    # dia, perder una vuelta no cambia el resultado.
+    - cron: "*/20 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Dos ejecuciones a la vez chocarian al empujar el mismo archivo.
+concurrency:
+  group: recolector
+  cancel-in-progress: false
+
+jobs:
+  recolectar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Consultar Binance y el BCV
+        run: node recolector.js
+
+      - name: Publicar el historial
+        run: |
+          git config user.name "recolector"
+          git config user.email "recolector@users.noreply.github.com"
+          if git diff --quiet -- datos/; then
+            echo "Sin cambios que publicar."
+            exit 0
+          fi
+          git add datos/
+          git commit -m "Tasas $(date -u '+%Y-%m-%d %H:%M') UTC [skip ci]"
+          # Otra ronda pudo empujar mientras esta corria.
+          git pull --rebase --autostash
+          git push
