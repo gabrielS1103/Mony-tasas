@@ -56,13 +56,13 @@
  },
  {
   "fecha": "2026-09-07",
-  "muestras": 39,
-  "p2pVenta": 958.0727,
+  "muestras": 40,
+  "p2pVenta": 959.7094000000001,
   "ventaMin": 952.1613,
-  "ventaMax": 958.6445,
-  "p2pCompra": 966.0151,
+  "ventaMax": 959.7094000000001,
+  "p2pCompra": 966.9739000000002,
   "bcvUsd": 813.7361,
   "bcvEur": 945.65085917,
-  "actualizado": "2026-09-07T16:47:29.515Z"
+  "actualizado": "2026-09-07T17:07:15.201Z"
  }
 ]
