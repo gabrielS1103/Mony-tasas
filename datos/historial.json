@@ -196,5 +196,16 @@
   "bcvUsd": 848.5458,
   "bcvEur": 974.41908397,
   "actualizado": "2026-09-20T03:47:01.220Z"
+ },
+ {
+  "fecha": "2026-09-20",
+  "muestras": 1,
+  "p2pVenta": 943.6025,
+  "ventaMin": 943.6025,
+  "ventaMax": 943.6025,
+  "p2pCompra": 954.653,
+  "bcvUsd": 848.5458,
+  "bcvEur": 974.41908397,
+  "actualizado": "2026-09-20T04:07:45.958Z"
  }
 ]
